@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Keep Team">
+    
+    <title>
+        
+            linux文件管理与查询 |
+        
+        Keep Theme
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Theme","author":"Keep Team","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":false,"tag":false,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":false,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":false,"preload":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Theme
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        linux文件管理与查询
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Keep Team</span>
+                                
+                                    <span class="author-badge">Lv1</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-07-29 16:17:51</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Fri Aug 08 2025 10:52:37 GMT+0800">2025-08-08 10:52:37</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/linux/">linux</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <h2 id="一-文件目录结构（一切皆文件！）"><a href="#一-文件目录结构（一切皆文件！）" class="headerlink" title="一.文件目录结构（一切皆文件！）"></a>一.文件目录结构（一切皆文件！）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统上所有文件（目录）以树状结构来组织。所有文件逻辑上都是以/目录的访问为起始点。不管文件物理上在哪个分区，逻辑上都在/目录里面</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730130350817.png"  alt="image-20250730130350817"></p>
+<h3 id="1-根目录"><a href="#1-根目录" class="headerlink" title="1.&#x2F; 根目录"></a>1.&#x2F; 根目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/  <span class="comment">#起始点，系统所有的文件都存放在这里</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-root、-home-用户家目录"><a href="#2-root、-home-用户家目录" class="headerlink" title="2.&#x2F;root、&#x2F;home 用户家目录"></a>2.&#x2F;root、&#x2F;home 用户家目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/root  <span class="comment">#超级用户（root）家目录，存放root配置文件</span></span><br><span class="line">/home  <span class="comment">#普通用户家目录，存放用户普通文件</span></span><br><span class="line">       <span class="built_in">echo</span> <span class="variable">$home</span></span><br><span class="line">       <span class="built_in">ls</span> /home  <span class="comment">#查看当前用户家目录</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-etc-系统配置目录"><a href="#3-etc-系统配置目录" class="headerlink" title="3.&#x2F;etc 系统配置目录"></a>3.&#x2F;etc 系统配置目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc  <span class="comment">#存放系统和应用程序的配置文件</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Centos特有路径</strong>：</p>
+<p><strong>网络配置：</strong> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/sysconfig/network-scripts   <span class="comment">#网卡配置文件 /ifcfg-ens192（替换ens192为实际网卡名）</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>YUM&#x2F;DNF配置：</strong></p>
+<p>yum：仅仅支持centos7及以下的；dnf：仅仅支持centos8及以上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/etc/yum.repos.d/CentOS-Base.repo   <span class="comment">#操作系统软件包，包含 baseos 仓库，提供系统运行必需的核心包（内核、基础库、系统工具） </span></span><br><span class="line">/etc/yum.repos.d/CentOS-AppStream.repo   <span class="comment">#应用流软件包，包含 appstream仓库，提供PHP/Python/MySQL等版本化软件（开发工具、运行时环境、中间件）</span></span><br><span class="line">/etc/yum.repos.d/CentOS-Extras.repo   <span class="comment">#额外软件补充包，包含 extras 仓库，如epel-release的依赖包（非必须但常用的工具和依赖）</span></span><br><span class="line"></span><br><span class="line">mirrorlist  镜像列表模式</span><br><span class="line"><span class="comment">#先访问mirrorlist url获取镜像地址列表，下载出列表，并开始测试响应速度，选择出最优的镜像进行连接，从该镜像下载仓库元数据         </span></span><br><span class="line">baseurl  直接指定模式</span><br><span class="line"><span class="comment">#直接访问指定的URL，下载仓库数据，如果地址不可达，会报错 </span></span><br><span class="line">生产环境建议 baseurl 指定稳定镜像，开发环境可用 mirrorlist 自动优选。</span><br><span class="line"></span><br><span class="line"><span class="comment">#关键配置参数</span></span><br><span class="line"><span class="comment">#enabled=1 启用该仓库</span></span><br><span class="line"><span class="comment">#gpgcheck=1  启用GPG签名验证（安全必备）</span></span><br><span class="line"><span class="comment">#gpgkey=URL  GPG公钥地址，需确保公钥有效</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>SELinux配置：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SElinux  <span class="comment">#美国国家安全局提出的概念</span></span><br><span class="line">         <span class="comment">#强制访问控制安全机制，用于增强linux的安全性 </span></span><br><span class="line"><span class="comment">#三种模式：</span></span><br><span class="line">enforcing：强制模式（默认）：严格执行安全策略的，违规操作会被阻止 并记录   permissive：标准模式/宽容模式：仅记录不拦截 </span><br><span class="line"><span class="built_in">disable</span>：禁用，完全关闭 </span><br><span class="line"><span class="comment">#策略类型SElinuxTYPE：</span></span><br><span class="line">targeted：仅保护预定义的重要进程和服务</span><br><span class="line">mls：多级安全策略，用于军事领域 </span><br></pre></td></tr></table></figure>
+
+<p><strong>修改配置文件后，通常需要重启服务才能生效</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#修改主机名 sudo vim/etc/hostname</span></span><br><span class="line"><span class="comment">#重启生效   reboot</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-dev-设备文件目录"><a href="#4-dev-设备文件目录" class="headerlink" title="4.&#x2F;dev 设备文件目录"></a>4.&#x2F;dev 设备文件目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/dev:  <span class="comment">#管理所有硬件设备和虚拟设备</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#关键设备示例：</span></span><br><span class="line">硬盘设备：</span><br><span class="line">/dev/sda ：第一块 SATA/SCSI 硬盘。</span><br><span class="line">/dev/sda1 ：第一块硬盘的第一个分区。</span><br><span class="line"></span><br><span class="line">虚拟设备：</span><br><span class="line">/dev/null ：空设备（丢弃所有输入）。</span><br><span class="line">/dev/random ：随机数生成器。</span><br><span class="line"></span><br><span class="line"><span class="comment">#权限说明：</span></span><br><span class="line">块设备（如硬盘）通常只有 root 或 disk 用户组有操作权限。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-bin、-sbin-系统命令目录"><a href="#5-bin、-sbin-系统命令目录" class="headerlink" title="5.&#x2F;bin、&#x2F;sbin 系统命令目录"></a>5.&#x2F;bin、&#x2F;sbin 系统命令目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/bin  <span class="comment">#二进制命令，存放普通用户或系统管理员可使用的基础命令，多为系统运行必需的核心工具</span></span><br><span class="line">/bin/ls <span class="comment">#查看文件列表。</span></span><br><span class="line">/bin/cp <span class="comment">#复制文件。</span></span><br><span class="line">/bin/date <span class="comment">#显示系统时间。</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/sbin  <span class="comment">#系统管理命令，存放需要管理员权限执行的系统管理命令，多涉及系统配置与维护 </span></span><br><span class="line">/sbin/service <span class="comment">#管理系统服务（如启动/停止服务）。</span></span><br><span class="line">/sbin/ifconfig <span class="comment">#查看或配置网络接口（已逐步被 ip 命令替代）。</span></span><br><span class="line">/sbin/reboot <span class="comment">#重启系统。</span></span><br></pre></td></tr></table></figure>
+
+<p>Q:为什么linux要把所有命令存放在目录<br>单用户模式（救援模式、维护模式）下依然可以使用<br>多为系统运行必需的命令</p>
+<h3 id="6-var、-tmp、-usr"><a href="#6-var、-tmp、-usr" class="headerlink" title="6.&#x2F;var、&#x2F;tmp、&#x2F;usr"></a>6.&#x2F;var、&#x2F;tmp、&#x2F;usr</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/var  <span class="comment">#存储动态变化的数据目录，会随着系统运行不断增长 </span></span><br><span class="line">- `/var/log`：系统和服务日志（如 `syslog`、`nginx/access.log`）。 </span><br><span class="line">              在能够写入日志的情况下，写入木马，获取shell </span><br><span class="line">- `/var/lib`：应用程序数据（如 MySQL 数据库 `/var/lib/mysql`）。</span><br><span class="line">             mysql数据库、docker容器</span><br><span class="line">- `/var/spool`：队列数据（如邮件队列 `/var/spool/mail`）。</span><br><span class="line">- `/var/log/secure`：安全认证日志（如 SSH 登录记录）。</span><br><span class="line">- `/var/log/messages`：核心系统日志（替代通用 syslog</span><br><span class="line">/tmp  <span class="comment">#存放临时文件，全局可读写的，重启会清空</span></span><br><span class="line">/usr  <span class="comment">#存储的是静态的用户进程：用户命令 库文件 共享数据 </span></span><br><span class="line">数据性质：/var动态变化</span><br><span class="line">        /tmp临时数据</span><br><span class="line">       /usr静态只读 </span><br><span class="line">是否可以删除？:/var是部分可删 （缓存等）</span><br><span class="line">            /tmp可删 </span><br><span class="line">           /usr不可删 </span><br><span class="line">是否需要备份？：/var部分需要备份（数据库）</span><br><span class="line">             /tmp不需要备份 </span><br><span class="line">             /user不需要备份（虽然存放很多核心文件，但不需要备份，重要文件在家目录里）</span><br><span class="line">文件大小？/var 10G以上，日志可能会膨胀</span><br><span class="line">        /tmp 1G以内 </span><br><span class="line">        /usr 5G-20G左右linux基础系统 </span><br><span class="line">分区情况：/var建议单独分区 </span><br><span class="line">        /tmp通常会挂载为tmpfs </span><br><span class="line">        /usr 通常和/合并</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-boot系统启动目录"><a href="#7-boot系统启动目录" class="headerlink" title="7.&#x2F;boot系统启动目录"></a>7.&#x2F;boot系统启动目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#系统启动目录</span></span><br><span class="line">/boot  <span class="comment">#启动linux系统所需的核心文件 </span></span><br><span class="line">内核kernel就存放在这里面，也存放了临时根文件系统</span><br><span class="line">误删可能会导致系统瘫痪</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-proc-虚拟文件系统"><a href="#8-proc-虚拟文件系统" class="headerlink" title="8.&#x2F;proc 虚拟文件系统"></a>8.&#x2F;proc 虚拟文件系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">作用：动态反映内核、进程和硬件状态。</span><br><span class="line"></span><br><span class="line">/proc/cpuinfo ：CPU 详细信息。</span><br><span class="line">/proc/meminfo ：内存使用情况。</span><br><span class="line">/proc/1234 ：PID 为 1234 的进程信息。</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 CPU 核心数 grep &quot;processor&quot; /proc/cpuinfo | wc -l</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、文件管理命令"><a href="#二、文件管理命令" class="headerlink" title="二、文件管理命令"></a>二、文件管理命令</h2><h3 id="1、touch-创建空文件"><a href="#1、touch-创建空文件" class="headerlink" title="1、touch-创建空文件"></a>1、touch-创建空文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建文件</span></span><br><span class="line"><span class="built_in">touch</span>  文件名</span><br><span class="line"></span><br><span class="line"><span class="built_in">touch</span> file1 file2  <span class="comment">#批量创建目录</span></span><br><span class="line"></span><br><span class="line">注意：在Windows识别文件时，会看文件后缀；而在linux中，是根据内容识别不同文件。linux中不同文件后缀，仅仅是为了方便人能识别文件名</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、mkdir-创建目录"><a href="#2、mkdir-创建目录" class="headerlink" title="2、mkdir-创建目录"></a>2、mkdir-创建目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建目录</span></span><br><span class="line"><span class="built_in">mkdir</span> [选项] 目录名</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p dir1/dir2  <span class="comment">#递归创建目录（创建目录dir1、dir2,且将dir1置于dir2）</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、rm-删除文件或目录"><a href="#3、rm-删除文件或目录" class="headerlink" title="3、rm-删除文件或目录"></a>3、rm-删除文件或目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除</span></span><br><span class="line"><span class="built_in">rm</span> [选项] 文件或目录</span><br><span class="line"></span><br><span class="line"><span class="built_in">rm</span> -r dir1  <span class="comment">#递归删除</span></span><br><span class="line"><span class="built_in">rm</span> -f <span class="comment">#强制删除（不提示确认）</span></span><br><span class="line"><span class="built_in">rm</span> -rf  <span class="comment">#强制删除目录及内容。会删除整个系统，切勿尝试！</span></span><br><span class="line">慎用！</span><br><span class="line">多用<span class="built_in">mv</span> 少用<span class="built_in">rm</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="4、cp-复制文件或目录"><a href="#4、cp-复制文件或目录" class="headerlink" title="4、cp-复制文件或目录"></a>4、cp-复制文件或目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#复制文件</span></span><br><span class="line"><span class="built_in">cp</span> [选项] 源文件 目标路径</span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> 1.txt dir1  <span class="comment">#将1.txt文件复制到dir1中</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> -r dir1 dir2  <span class="comment">#必须加上-r表示递归复制，linux默认目录下有很多文件，在复制时需考虑磁盘占有率，必须加上参数才能复制</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> -f dir1 dir2  <span class="comment">#强制复制</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> -i 1.txt dir1  <span class="comment">#遇到相同文件时，覆盖前确认</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5、mv-移动或重命名文件"><a href="#5、mv-移动或重命名文件" class="headerlink" title="5、mv-移动或重命名文件"></a>5、mv-移动或重命名文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#移动</span></span><br><span class="line"><span class="built_in">mv</span> 源文件 目标路径或名称</span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> 1.txt 2.txt <span class="comment">#将文件重命名为2.txt</span></span><br><span class="line"><span class="built_in">mv</span> -r dir1 dir2 <span class="comment">#递归</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-ls-查看"><a href="#6-ls-查看" class="headerlink" title="6.ls-查看"></a>6.ls-查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-a 显示隐藏文件 </span><br><span class="line">-l 长格式显示 </span><br><span class="line">-h 人类可读的文件大小 </span><br><span class="line">-R 递归显示子目录</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-cat-查看文件内容"><a href="#7-cat-查看文件内容" class="headerlink" title="7.cat-查看文件内容"></a>7.cat-查看文件内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用于快速查看、合并或创建文件内容。适合小文件，直接将内容输出到终端，无交互功能</span></span><br><span class="line"><span class="built_in">cat</span> filename <span class="comment"># 查看文件内容 </span></span><br><span class="line"><span class="built_in">cat</span> file1 file2 <span class="comment"># 同时显示多个文件内容 </span></span><br><span class="line"><span class="built_in">cat</span> file1 file2 &gt; merged_file <span class="comment"># 合并文件</span></span><br><span class="line"></span><br><span class="line">-n：显示行号（包括空行）</span><br><span class="line">-b：显示行号（忽略空行）</span><br><span class="line">-s：压缩连续空行为一行</span><br><span class="line">-E：在行尾显示 $ 符号</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#创建文件</span></span><br><span class="line">[root@xnha ~]# <span class="built_in">cat</span> &gt; 123.txt &lt;&lt;<span class="string">EOF </span></span><br><span class="line"><span class="string">&gt; ABC </span></span><br><span class="line"><span class="string">&gt; EOF</span> </span><br><span class="line">[root@xnha ~]# <span class="built_in">cat</span> 123.txt </span><br><span class="line">ABC</span><br><span class="line"></span><br><span class="line"><span class="comment">#追加内容</span></span><br><span class="line"><span class="built_in">cat</span> file1 &gt;&gt; file2 </span><br><span class="line"><span class="comment"># 将 file1 内容追加到 file2 末尾</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-tail-查看文件尾"><a href="#8-tail-查看文件尾" class="headerlink" title="8.tail-查看文件尾"></a>8.tail-查看文件尾</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用于查看文件末尾内容，默认显示最后10行。常用于实时监控日志更新。</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">tail</span> filename <span class="comment"># 显示文件最后10行 </span></span><br><span class="line"><span class="built_in">tail</span> -n 20 filename <span class="comment"># 显示最后20行</span></span><br><span class="line">-n ：指定显示的行数</span><br><span class="line">-f：实时追踪文件变化（常用于监控日志）</span><br><span class="line">ctrl+c 退出跟踪</span><br><span class="line"></span><br><span class="line"><span class="built_in">tail</span> -n +100 file  <span class="comment">#从第100行开始显示到末尾</span></span><br><span class="line"><span class="built_in">tail</span> -f app.log | grep <span class="string">&quot;ERROR&quot;</span>  <span class="comment">#追踪筛选</span></span><br></pre></td></tr></table></figure>
+
+<p>cat、grep、tail、less、find的区别</p>
+<h3 id="9-grep"><a href="#9-grep" class="headerlink" title="9.grep"></a>9.grep</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep [选项] <span class="string">&quot;搜索模式&quot;</span> 文件/目录</span><br><span class="line"><span class="comment">#搜索模式：普通字符串或正则表达式</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730163209914.png"  alt="image-20250730163209914"></p>
+<h5 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h5><h5 id="（1）基础正则表达式"><a href="#（1）基础正则表达式" class="headerlink" title="（1）基础正则表达式"></a>（1）基础正则表达式</h5><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730163414423.png"  alt="image-20250730163414423"></p>
+<h5 id="（2）扩展正则表达式（-E或egrep）"><a href="#（2）扩展正则表达式（-E或egrep）" class="headerlink" title="（2）扩展正则表达式（-E或egrep）"></a>（2）扩展正则表达式（-E或egrep）</h5><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730163608556.png"  alt="image-20250730163608556"></p>
+<h5 id="实验练习："><a href="#实验练习：" class="headerlink" title="实验练习："></a>实验练习：</h5><h6 id="（1）查找错误日志"><a href="#（1）查找错误日志" class="headerlink" title="（1）查找错误日志"></a>（1）查找错误日志</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -i <span class="string">&quot;error&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#输出所有包含错误的行</span></span><br><span class="line"><span class="comment">#-i 表示忽略大小写</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730164911881.png"  alt="image-20250730164911881"></p>
+<h6 id="（2）反向排除调试信息"><a href="#（2）反向排除调试信息" class="headerlink" title="（2）反向排除调试信息"></a>（2）反向排除调试信息</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -v <span class="string">&quot;ERROR&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#排除包含&quot;ERROR&quot;的行</span></span><br><span class="line"><span class="comment">#-v表示方向匹配（排除模式）</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730165228578.png"  alt="image-20250730165228578"></p>
+<h6 id="（3）显示匹配行号"><a href="#（3）显示匹配行号" class="headerlink" title="（3）显示匹配行号"></a>（3）显示匹配行号</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -n <span class="string">&quot;ERROR&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#输出包含“ERROR”信息的行号</span></span><br><span class="line"><span class="comment">#-n显示匹配行的行号</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730165508958.png"  alt="image-20250730165508958"></p>
+<h6 id="（4）统计次数"><a href="#（4）统计次数" class="headerlink" title="（4）统计次数"></a>（4）统计次数</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grep -c <span class="string">&quot;ERROR&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#输出错误的次数（行数）</span></span><br><span class="line"><span class="comment">#-c显示匹配行数</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730165717620.png"  alt="image-20250730165717620"></p>
+<h6 id="（5）查看错误上下文"><a href="#（5）查看错误上下文" class="headerlink" title="（5）查看错误上下文"></a>（5）查看错误上下文</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep -C3 <span class="string">&quot;ERROR&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#显示“ERROR”行及前后各三行</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730173831305.png"  alt="image-20250730173831305"></p>
+<p><strong>正则表达式</strong></p>
+<h6 id="（6）匹配时间范围"><a href="#（6）匹配时间范围" class="headerlink" title="（6）匹配时间范围"></a>（6）匹配时间范围</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> grep <span class="string">&quot;2023-10-01 08:1.*&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#匹配8：10到8：14的行</span></span><br><span class="line"><span class="comment">#.表示任意单个字符</span></span><br><span class="line"><span class="comment">#*表示前一个字符重复0次或多次</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730231003927.png"  alt="image-20250730231003927"></p>
+<h6 id="（7）提取IP地址"><a href="#（7）提取IP地址" class="headerlink" title="（7）提取IP地址"></a>（7）提取IP地址</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">grep -Eo <span class="string">&quot;([0-9]&#123;1,3&#125;\.)&#123;3&#125;[0-9]&#123;1,3&#125;&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#筛选出所有IP地址</span></span><br><span class="line"><span class="comment">#-E</span></span><br><span class="line"><span class="comment">#-o表示仅显示匹配的内容（非整行）</span></span><br><span class="line"><span class="comment">#[0-9]&#123;1,3&#125;表示0-9的任意数字，重复出现1-3次</span></span><br><span class="line"><span class="comment">#\.表示&quot;.&quot;。由于.本身表示匹配单个字符，这里仅表示一个&quot;.&quot;,因而需要转义字符&quot;\&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730231744914.png"  alt="image-20250730231744914"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep -Eo <span class="string">&quot;192\.168(\.[0-9]&#123;1,3&#125;)&#123;2&#125;&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#筛选出IP地址为192.168.x.x</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730231937620.png"  alt="image-20250730231937620"></p>
+<h6 id="8-提取邮箱地址"><a href="#8-提取邮箱地址" class="headerlink" title="(8)提取邮箱地址"></a>(8)提取邮箱地址</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">grep -Eio <span class="string">&quot;\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]&#123;2,&#125;\b&quot;</span> 1.txt</span><br><span class="line"><span class="comment"># 输出 user_john@example.com</span></span><br><span class="line">xxxxxxxx@xxx. </span><br><span class="line">&#123;1，&#125; </span><br><span class="line"><span class="comment">#[a-z0-9._%+-]允许字母、数字、.、-；（相当于全键盘）</span></span><br><span class="line"><span class="comment"># +表示前一个字符至少重复 1 次。 </span></span><br><span class="line"><span class="comment">#\b 单词边界，确保匹配的是独立邮箱（避免匹配 user@example.com.cn.xxx 中的部分）。 </span></span><br><span class="line"><span class="comment">#-E拓展正则表达式 </span></span><br><span class="line"><span class="comment">#-i忽略大小写 </span></span><br><span class="line"><span class="comment">#-o仅匹配筛选内容 </span></span><br><span class="line">grep -Eio <span class="string">&quot;\b[A-Za-z0-9._%+-]+@([A-Za-z0-9-]+\.)+[A-Z]&#123;2,&#125;\b&quot;</span> 1.txt</span><br><span class="line"><span class="comment">#输出user_john@example.com.cn</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730233140003.png"  alt="image-20250730233140003"></p>
+<h6 id="（9）查找金额记录"><a href="#（9）查找金额记录" class="headerlink" title="（9）查找金额记录"></a>（9）查找金额记录</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&#x27;\$&#x27;</span> 1.txt</span><br><span class="line"><span class="comment">#匹配包含&quot;$&quot;的行（需要加上转义符\）</span></span><br><span class="line">grep <span class="string">&quot;\$&quot;</span> 1.txt <span class="comment">#错误表达</span></span><br><span class="line"><span class="comment">##使用单引号能直接将 \$ 传递给 grep，而双引号可能需要额外的转义（例如 &quot;\\$&quot;），否则 Shell 可能干扰转义逻辑。</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>单引号</strong>：会完全保留字符串的字面值，所有特殊字符（如 $、\、&#96; 等）都会被当作普通字符处理。因此 ‘$‘ 会直接将 $ 作为正则表达式传递给 grep，确保 $ 被转义为普通字符（而非正则中的“行尾”元字符）。</p>
+<p><strong>双引号</strong>：会允许 Shell 展开部分特殊字符（如变量 $VAR 或命令替换 $(cmd)）。如果写成 “$“，Shell 会先尝试解析 $（虽然这里 $ 未被展开，但增加了潜在的解析风险）。</p>
+</blockquote>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250730233744710.png"  alt="image-20250730233744710"></p>
+<h6 id="10-目录递归"><a href="#10-目录递归" class="headerlink" title="(10)目录递归"></a>(10)目录递归</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /tmp/practice/logs/ </span><br><span class="line"><span class="comment"># 创建目录结构 </span></span><br><span class="line"><span class="built_in">cp</span> 1.txt /tmp/practice/logs/ </span><br><span class="line"><span class="comment">#复制1.txt到logs目录下</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;ERROR: File not found&quot;</span> &gt; /tmp/practice/error.log </span><br><span class="line"><span class="comment">#创立error.log文件，并将&quot;ERROR: File not found&quot;写入该文件</span></span><br><span class="line"> grep -r <span class="string">&quot;ERROR&quot;</span> /tmp/practice/</span><br><span class="line"> <span class="comment"># 递归搜索所有 &quot;ERROR&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="10-find"><a href="#10-find" class="headerlink" title="10.find"></a>10.find</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find [搜索路径] [匹配条件] [执行动作]</span><br><span class="line"><span class="comment">#搜索路径：默认为当前目录（ . ），可指定绝对或相对路径。</span></span><br><span class="line"><span class="comment">#匹配条件：按名称、类型、大小、时间等过滤文件。</span></span><br><span class="line"><span class="comment">#执行动作：对匹配文件执行操作（如删除、输出路径）。</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>绝对路径:从文件系统的根目录（&#x2F;）开始的完整路径，唯一指向目标文件或目录。</p>
+<p>相对路径：以当前工作目录为起点的路径，通过相对关系（如 <code>./</code>、<code>../</code>）定位目标。</p>
+</blockquote>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001038545.png"  alt="image-20250731001038545"></p>
+<h5 id="匹配条件："><a href="#匹配条件：" class="headerlink" title="匹配条件："></a>匹配条件：</h5><h6 id="（1）按名称或路径匹配"><a href="#（1）按名称或路径匹配" class="headerlink" title="（1）按名称或路径匹配"></a>（1）按名称或路径匹配</h6><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001359776.png"  alt="image-20250731001359776"></p>
+<h6 id="（2）按文件类型匹配"><a href="#（2）按文件类型匹配" class="headerlink" title="（2）按文件类型匹配"></a>（2）按文件类型匹配</h6><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001559908.png"  alt="image-20250731001559908"></p>
+<h6 id="（3）按文件大小匹配"><a href="#（3）按文件大小匹配" class="headerlink" title="（3）按文件大小匹配"></a>（3）按文件大小匹配</h6><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001613494.png"  alt="image-20250731001613494"></p>
+<h6 id="（4）按时间戳匹配"><a href="#（4）按时间戳匹配" class="headerlink" title="（4）按时间戳匹配"></a>（4）按时间戳匹配</h6><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001626430.png"  alt="image-20250731001626430"></p>
+<h6 id="（5）按权限匹配"><a href="#（5）按权限匹配" class="headerlink" title="（5）按权限匹配"></a>（5）按权限匹配</h6><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001638383.png"  alt="image-20250731001638383"></p>
+<p><strong>逻辑操作符</strong></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001830979.png"  alt="image-20250731001830979"></p>
+<p><strong>执行动作</strong></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731001845632.png"  alt="image-20250731001845632"></p>
+<h5 id="实验练习"><a href="#实验练习" class="headerlink" title="实验练习"></a>实验练习</h5><h6 id="（1）创建目录结构"><a href="#（1）创建目录结构" class="headerlink" title="（1）创建目录结构"></a>（1）创建目录结构</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/find-practice/&#123;logs,data,backup&#125; </span><br><span class="line"><span class="built_in">touch</span> ~/find-practice/logs/&#123;app.log,error.log&#125; </span><br><span class="line"><span class="built_in">touch</span> ~/find-practice/data/&#123;file1.txt,file2.csv,image.jpg&#125; </span><br><span class="line"><span class="built_in">mkdir</span> ~/find-practice/backup/old </span><br><span class="line"><span class="built_in">touch</span> ~/find-practice/backup/old/archive.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731005134525.png"  alt="image-20250731005134525"></p>
+<h6 id="（2）按名称搜索文件"><a href="#（2）按名称搜索文件" class="headerlink" title="（2）按名称搜索文件"></a>（2）按名称搜索文件</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -name <span class="string">&quot;*.log&quot;</span></span><br><span class="line"><span class="comment">#输出所有&quot;.log&quot;文件的路径（遍历搜索）</span></span><br><span class="line"><span class="comment">#-name 按文件名匹配（区分大小写）</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731005518479.png"  alt="image-20250731005518479"></p>
+<h6 id="（3）按文件类型搜索目录"><a href="#（3）按文件类型搜索目录" class="headerlink" title="（3）按文件类型搜索目录"></a>（3）按文件类型搜索目录</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -<span class="built_in">type</span> d</span><br><span class="line"><span class="comment">#列出所有子目录</span></span><br><span class="line"><span class="comment">#-type d 表示仅匹配目录</span></span><br><span class="line"><span class="comment">#f&gt;&gt;目录 l&gt;&gt;符号链接 b&gt;&gt; 块设备文件 c&gt;&gt;字符设备文件</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731010444206.png"  alt="image-20250731010444206"></p>
+<h6 id="（4）组合条件（名称与大小）"><a href="#（4）组合条件（名称与大小）" class="headerlink" title="（4）组合条件（名称与大小）"></a>（4）组合条件（名称与大小）</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -name <span class="string">&quot;*.jpg&quot;</span> -size +10k </span><br><span class="line"><span class="comment"># 查找大于 10KB 的 .jpg 文件</span></span><br><span class="line"><span class="comment">#-size +10k表示大于 10KB；若是-10KB，则表示小于10KB；若是0，则表示空文件</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="（5）时间权限搜索"><a href="#（5）时间权限搜索" class="headerlink" title="（5）时间权限搜索"></a>（5）时间权限搜索</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -mtime -1 </span><br><span class="line"><span class="comment"># 查找最近 1 天内修改过的文件</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731011145263.png"  alt="image-20250731011145263"></p>
+<h6 id="（6）排除特定权限的文件"><a href="#（6）排除特定权限的文件" class="headerlink" title="（6）排除特定权限的文件"></a>（6）排除特定权限的文件</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice ! -perm 644 </span><br><span class="line"><span class="comment"># 查找权限不是 644 的文件（排除权限是644的（注意linux的逻辑表达））</span></span><br><span class="line">find ~/find-practice -perm !  644 <span class="comment">#错误表达</span></span><br><span class="line"><span class="comment">#普通文件的默认权限是644</span></span><br><span class="line"><span class="comment">#目录的默认权限是755</span></span><br><span class="line">rwx </span><br><span class="line">r4</span><br><span class="line">w2</span><br><span class="line">x1</span><br><span class="line">文件所有者 </span><br><span class="line">所在用户组 </span><br><span class="line">其他用户</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731011706158.png"  alt="image-20250731011706158"></p>
+<h6 id="（7）删除空文件"><a href="#（7）删除空文件" class="headerlink" title="（7）删除空文件"></a>（7）删除空文件</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -size 0 -delete </span><br><span class="line"><span class="comment"># 删除所有空文件（-delete慎重选择！）</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="（8）批量修改权限"><a href="#（8）批量修改权限" class="headerlink" title="（8）批量修改权限"></a>（8）批量修改权限</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -name <span class="string">&quot;*.sh&quot;</span> -<span class="built_in">exec</span> <span class="built_in">chmod</span> 755 &#123;&#125; \; </span><br><span class="line"><span class="comment"># 将所有 .sh 文件权限设为755</span></span><br><span class="line"><span class="comment">#-exec对找到的文件执行指定命令。</span></span><br><span class="line"><span class="comment">#&#123;&#125;由于不知道筛选出的文件的大小，所以需要占位符</span></span><br><span class="line"><span class="comment">#\;表示结束（或用+表示批处理搜索）</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="（9）搜索并压缩文件"><a href="#（9）搜索并压缩文件" class="headerlink" title="（9）搜索并压缩文件"></a>（9）搜索并压缩文件</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> ~/find-practice/logs/&#123;app.log,error.log&#125; </span><br><span class="line">find ~/find-practice -name <span class="string">&quot;*.log&quot;</span> -<span class="built_in">exec</span> tar -czvf logs.tar.gz &#123;&#125; + </span><br><span class="line"><span class="comment"># 将 .log 文件打包为 logs.tar.gz</span></span><br><span class="line"><span class="comment">#-c&gt;&gt;创建新的归档文件（必选）  -z&gt;&gt;使用gzip压缩文件（生成.tar.gz或.tgz）</span></span><br><span class="line"><span class="comment">#-v&gt;&gt;显示详细操作过程         -f&gt;&gt;指定归档文件名（必选，且必须放在文件最后）</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731115706814.png"  alt="image-20250731115706814"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar: 从成员名中删除开头的“/”</span><br><span class="line">tar: 从硬连接目标中删除开头的“/”</span><br><span class="line">Q:为什么会提示这些信息？</span><br><span class="line">  根本原因：通过 find 命令找到的文件路径是绝对路径（如/root/find-practice/logs/app.log），而 tar 默认会移除路径开头的 /，这是为了防止解压时意外覆盖系统关键文件（安全设计）。解压时，文件会相对当前目录生成（如 ./root/find-practice/logs/app.log），而非覆盖系统的 /root/...。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用相对路径</span></span><br><span class="line"><span class="built_in">cd</span> ~/find-practice  <span class="comment"># 先切换到目标目录</span></span><br><span class="line">find . -name <span class="string">&quot;*.log&quot;</span> -<span class="built_in">exec</span> tar -czvf logs.tar.gz &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731121044681.png"  alt="image-20250731121044681"></p>
+<h6 id="（10）忽略特定目录"><a href="#（10）忽略特定目录" class="headerlink" title="（10）忽略特定目录"></a>（10）忽略特定目录</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -path <span class="string">&quot;*/backup&quot;</span> -prune -o -name <span class="string">&quot;*.txt&quot;</span> -<span class="built_in">print</span></span><br><span class="line"><span class="comment">#查找所有 .txt 文件，但跳过 backup 目录</span></span><br><span class="line"><span class="comment">#-path 匹配完整路径（支持通配符 *）</span></span><br><span class="line"><span class="comment">#&quot;*/backup&quot;匹配任意层级的backup目录，如果没有*，会默认只匹配根目录下的</span></span><br><span class="line"><span class="comment">#-prune 跳过匹配的目录（需与 -path 或 -name 配合使用）</span></span><br><span class="line"><span class="comment">#-o 逻辑“或”，连接两个条件</span></span><br><span class="line"><span class="comment">#-name 按文件名匹配（仅匹配文件名，不包含路径）。</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731122415759.png"  alt="image-20250731122415759"></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731121850409.png"  alt="image-20250731121850409"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#也可以结合-exec处理找到的文件</span></span><br><span class="line">find ~/find-practice -path <span class="string">&quot;*/backup&quot;</span> -prune -o -name <span class="string">&quot;*.txt&quot;</span> -<span class="built_in">exec</span> <span class="built_in">cp</span> &#123;&#125; /tmp \;</span><br><span class="line"><span class="comment">#查找所有 .txt 文件，但跳过 backup 目录。并将符合的文件放入临时文件夹</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="（11）结合xargs处理文件"><a href="#（11）结合xargs处理文件" class="headerlink" title="（11）结合xargs处理文件"></a>（11）结合xargs处理文件</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">find ~/find-practice -name <span class="string">&quot;*.csv&quot;</span> | xargs -I &#123;&#125; <span class="built_in">mv</span> &#123;&#125; ~/find-practice/data/ </span><br><span class="line"><span class="comment"># 移动所有 .csv 文件到 data 目录</span></span><br><span class="line"><span class="comment">#| xargs -I &#123;&#125;：将管道传来的每一行输入替换为 &#123;&#125;（占位符）</span></span><br><span class="line"><span class="comment">#若文件名含空格或特殊字符（如 my file.csv），xargs 可能错误分割参数</span></span><br><span class="line">Q：如何解决：</span><br><span class="line">（1）find ~/find-practice -name <span class="string">&quot;*.csv&quot;</span> -print0 | xargs -0 -I &#123;&#125; <span class="built_in">mv</span> &#123;&#125; ~/find-practice/data/</span><br><span class="line"><span class="comment"># find -print0 和 xargs -0（Null 分隔符）</span></span><br><span class="line">（2）find ~/find-practice -name <span class="string">&quot;*.csv&quot;</span> -<span class="built_in">exec</span> <span class="built_in">mv</span> &#123;&#125; ~/find-practice/data/ \;</span><br><span class="line"><span class="comment">#&quot;*.csv&quot; 只能匹配当前目录下的文件，无法递归到子目录，需要-exec（或xargs）</span></span><br><span class="line"><span class="comment">#用-exec，但需要对每个文件单独执行mv（效率低）</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>总结常用场景：</strong></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250731124942133.png"  alt="image-20250731124942133"></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/linux/">linux</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/"
+                                   title="Centos8 Apache的搭建"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Centos8 Apache的搭建</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/07/28/hello-world/"
+                                   title="Hello World"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Hello World</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Keep Team</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+
+    <!-- tablet toc -->
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>

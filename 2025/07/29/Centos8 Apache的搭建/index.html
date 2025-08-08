@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Keep Team">
+    
+    <title>
+        
+            Centos8 Apache的搭建 |
+        
+        Keep Theme
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/logo.svg">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Theme","author":"Keep Team","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":false,"tag":false,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":false,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":false,"preload":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+
+<main class="page-container border-box">
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left flex-start border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Keep Theme
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc border-box">
+                <ul class="menu-list border-box">
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/">
+                                
+                                HOME
+                                
+                            </a>
+                            
+                        </li>
+                    
+                        
+                        <li class="menu-item flex-start border-box">
+                            <a class="menu-text-color border-box" href="/archives">
+                                
+                                ARCHIVES
+                                
+                            </a>
+                            
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile border-box flex-start">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list border-box">
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
+                            
+                            HOME
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+                
+                <li class="drawer-menu-item border-box not-sub-menu">
+                    <label class="drawer-menu-label border-box">
+                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
+                            
+                            ARCHIVES
+                        </a>
+                        
+                    </label>
+                    
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        Centos8 Apache的搭建
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/avatar.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Keep Team</span>
+                                
+                                    <span class="author-badge">Lv1</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2025-07-29 16:17:51</span>
+            </span>
+
+            
+                <span class="meta-info-item post-update-date">
+                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                    <span class="datetime" data-updated="Fri Aug 08 2025 10:51:59 GMT+0800">2025-08-08 10:51:59</span>
+                </span>
+            
+        
+
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/linux/">linux</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body ">
+                    
+
+                    
+                         <p><strong>Apache</strong> 是世界上使用最广泛的Web服务器软件之一。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用。</p>
+<h2 id="一、前置知识"><a href="#一、前置知识" class="headerlink" title="一、前置知识"></a><strong>一、前置知识</strong></h2><p><strong>linux文件系统结构基础</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/etc <span class="comment">#配置文件存放的目录</span></span><br><span class="line">/var <span class="comment">#动态数据存储</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#命令：</span></span><br><span class="line"><span class="built_in">ls</span> <span class="comment">#查看   cd  #对当前路径切换  mkdir #创建目录   chmod #修改权限  chown #更改属主/组  vim #编辑</span></span><br><span class="line">systemctl  <span class="comment">#管理配置   firewall #防火墙</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>网络基础</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#IP地址和端口</span></span><br><span class="line">apache 默认监听</span><br><span class="line">http://localhost :80</span><br><span class="line">https://**:443</span><br><span class="line"></span><br><span class="line"><span class="comment">#DNS和域名解析</span></span><br><span class="line">windows默认路径：C:\windows\system32\drivers\hosts</span><br><span class="line">linux默认路径：/etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p><strong>用户和权限</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apache默认以apache用户运行</span><br><span class="line">用root开启服务</span><br></pre></td></tr></table></figure>
+
+<p><strong>yum&#x2F;dnf</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在 Linux 系统中，yum和dnf都是包管理工具，主要用于基于RPM的发行版（如 RHEL、CentOS、Fedora）</span><br><span class="line"></span><br><span class="line"><span class="comment">#如何选择？</span></span><br><span class="line">RHEL/CentOS 7 或更早：使用 yum。 </span><br><span class="line">RHEL 8+/Fedora：优先用 dnf（系统已自动将 yum 命令映射到 dnf）。 兼容性：两者命令相似，dnf 是 yum 的超集。</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、安装步骤："><a href="#二、安装步骤：" class="headerlink" title="二、安装步骤："></a>二、<strong>安装步骤：</strong></h2><h3 id="（1）更新软件源并安装apache"><a href="#（1）更新软件源并安装apache" class="headerlink" title="（1）更新软件源并安装apache"></a><strong>（1）更新软件源并安装apache</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.huaweicloud.com/repository/conf/CentOS-8-reg.repo</span><br><span class="line"></span><br><span class="line"><span class="comment">#将 CentOS 8 的默认软件仓库源替换为华为云的镜像源</span></span><br><span class="line">操作目的：</span><br><span class="line">加速软件包下载：华为云镜像源通常比官方源在国内的访问速度更快。</span><br><span class="line">解决官方源不可用问题：CentOS 8 官方源已停止维护（2021年底），直接使用会报错，需替换为第三方镜像源。</span><br><span class="line"></span><br><span class="line"><span class="comment">#wget 命令行下载工具，广泛用于Linux/Unix系统，支持通过HTTP、HTTPS和FTP协议下载文件。</span></span><br><span class="line"><span class="comment">#-O：指定输出文件路径。</span></span><br><span class="line">[root@<span class="built_in">test</span> ~]#yum install httpd <span class="comment">#下载</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804203631061.png"  alt="image-20250804203631061"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#系统缺少perl 5.26模块，导致perl-DBD-SQLite和perl-DBI模块无法满足依赖</span></span><br><span class="line">安装httpd失败的原因主要是由于CentOS 8的模块依赖冲突或者重复仓库配置问题。</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<p><strong>第一步：清理重复仓库配置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份现有仓库</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/repo_backup &amp;&amp; <span class="built_in">cp</span> /etc/yum.repos.d/* ~/repo_backup/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除重复仓库文件（保留华为云的CentOS-Base.repo）</span></span><br><span class="line"><span class="built_in">rm</span> -f /etc/yum.repos.d/CentOS-*.repo</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154830561.png"  alt="image-20250804154830561"></p>
+<p><strong>第二步：重置华为云仓库配置</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新下载华为云官方提供的完整仓库配置</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.huaweicloud.com/repository/conf/CentOS-8-reg.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新缓存</span></span><br><span class="line">dnf clean all &amp;&amp; dnf makecache</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154458028.png"  alt="image-20250804154458028"></p>
+<p><strong>第三步：解决模块依赖问题</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重置模块流</span></span><br><span class="line">dnf module reset perl</span><br><span class="line"><span class="comment"># 安装最新perl模块</span></span><br><span class="line">dnf install perl -y</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154532515.png"  alt="image-20250804154532515"></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154629817.png"  alt="image-20250804154629817"></p>
+<p><strong>第四步：安装httpd</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 尝试安装httpd（使用--allowerasing参数自动解决依赖冲突）</span></span><br><span class="line">dnf install httpd --allowerasing -y</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154709050.png"  alt="image-20250804154709050"></p>
+<h3 id="（2）启动Apache服务并检查"><a href="#（2）启动Apache服务并检查" class="headerlink" title="（2）启动Apache服务并检查"></a><strong>（2）启动Apache服务并检查</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start httpd    <span class="comment"># 启动服务</span></span><br><span class="line">systemctl <span class="built_in">enable</span> httpd   <span class="comment"># 开机自启</span></span><br><span class="line">systemctl status httpd   <span class="comment"># 检查状态（确认显示 &quot;active (running)&quot;）</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154958663.png"  alt="image-20250804154958663"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在安装完以后，我们可以检查apache配置文件 </span></span><br><span class="line"><span class="comment"># 主配置文件 </span></span><br><span class="line"><span class="built_in">ls</span> -l /etc/httpd/conf/httpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 虚拟主机配置目录 </span></span><br><span class="line"><span class="built_in">ls</span> -l /etc/httpd/conf.d/yourwebsite.conf</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250805134810754.png"  alt="image-20250805134810754"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查系统新增的系统服务 </span></span><br><span class="line">systemctl list-unit-files | grep httpd</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160534817.png"  alt="image-20250804160534817"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查新增的apache进程 </span></span><br><span class="line">ps aux | grep httpd</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160610088.png"  alt="image-20250804160610088"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查新增的日志文件</span></span><br><span class="line"><span class="built_in">ls</span> -l /var/log/httpd/</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211049524.png"  alt="image-20250804211049524"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#检查新增的用户和组 </span></span><br><span class="line">grep apache /etc/passwd </span><br><span class="line">grep apache /etc/group </span><br><span class="line"><span class="built_in">tail</span> -2 /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160749295.png"  alt="image-20250804160749295"></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160828789.png"  alt="image-20250804160828789"></p>
+<h3 id="（3）虚拟主机配置"><a href="#（3）虚拟主机配置" class="headerlink" title="（3）虚拟主机配置"></a><strong>（3）虚拟主机配置</strong></h3><h4 id="（1）在默认目录下搭建网站"><a href="#（1）在默认目录下搭建网站" class="headerlink" title="（1）在默认目录下搭建网站"></a>（1）在默认目录下搭建网站</h4><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211251229.png"  alt="image-20250804211251229"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#apache默认以apache用户运行</span></span><br><span class="line"><span class="comment">#更改所属主和属组</span></span><br><span class="line">[root@<span class="built_in">test</span> html]# <span class="built_in">chown</span> apache:apache index.html</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250805001150129.png"  alt="image-20250805001150129"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建测试页面</span></span><br><span class="line">[root@<span class="built_in">test</span> html]# vim index.html</span><br><span class="line"></span><br><span class="line">[root@<span class="built_in">test</span> html]# curl http://localhost</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211823192.png"  alt="image-20250804211823192"></p>
+<p>本地主机上访问centos8的IP地址来访问网站</p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804212049564.png"  alt="image-20250804212049564"></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211658003.png"  alt="image-20250804211658003"></p>
+<h4 id="（2）在非默认目录下搭建网站（不删除原界面）"><a href="#（2）在非默认目录下搭建网站（不删除原界面）" class="headerlink" title="（2）在非默认目录下搭建网站（不删除原界面）"></a>（2）在非默认目录下搭建网站（不删除原界面）</h4><blockquote>
+<p>Apache虚拟主机允许单台服务器通过 <strong>域名</strong>、<strong>IP地址</strong> 或 <strong>端口</strong> 托管多个独立网站，其本质是通过配置将不同特征的请求引导至不同的文档根目录或后端服务。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">三种类型：</span><br><span class="line"><span class="comment">#基于域名的虚拟主机：多个域名指向同一个服务器IP</span></span><br><span class="line">所有域名需解析到同一服务器IP。</span><br><span class="line">浏览器请求时会自动携带 Host 头（如 Host: a.com），服务器据此区分站点。</span><br><span class="line"><span class="comment">#基于IP的虚拟主机：服务器有多个公网IP，不同IP访问不同网站。</span></span><br><span class="line">需为服务器绑定多个IP地址。</span><br><span class="line">客户端直接通过不同IP访问（如 http://192.168.1.100）。</span><br><span class="line"><span class="comment">#基于端口的虚拟主机：通过不同端口提供不同服务</span></span><br><span class="line">需在防火墙中放行对应端口（如80：访问官网 8080：访问后台）。</span><br><span class="line">访问时需显式指定端口（如 http://example.com:8080 ）。</span><br></pre></td></tr></table></figure>
+
+<p>用户访问study.com</p>
+<p>apache会检查servername 和 serveralias</p>
+<p>匹配相应的虚拟主机配置</p>
+<p>返回内容</p>
+<h5 id="创建新网站的目录结构"><a href="#创建新网站的目录结构" class="headerlink" title="创建新网站的目录结构"></a><strong>创建新网站的目录结构</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# <span class="built_in">mkdir</span> -p /var/www/qingshanstudy/html /var/www/qingshanstudy/log</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804214633197.png"  alt="image-20250804214633197"></p>
+<h5 id="创建HTML页面"><a href="#创建HTML页面" class="headerlink" title="创建HTML页面"></a><strong>创建HTML页面</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> qingshanstudy]# vim html/index.html</span><br><span class="line"><span class="comment">#编辑测试界面</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="配置Apache虚拟主机"><a href="#配置Apache虚拟主机" class="headerlink" title="配置Apache虚拟主机"></a><strong>配置Apache虚拟主机</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# vim /etc/httpd/conf.d/qingshanstudy.conf</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:80&gt; </span><br><span class="line">ServerName qingshanstudy.example.com <span class="comment"># 主域名 </span></span><br><span class="line">ServerAlias www.qingshanstudy.example.com <span class="comment"># 备用域名</span></span><br><span class="line">DocumentRoot /var/www/qingshanstudy/html <span class="comment"># 网站根目录 </span></span><br><span class="line">ErrorLog /var/log/httpd/qingshanstudy_error.log <span class="comment"># 错误日志</span></span><br><span class="line">CustomLog /var/log/httpd/qingshanstudy_access.log combined <span class="comment"># 访问日志</span></span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804215553582.png"  alt="image-20250804215553582"></p>
+<h5 id="本地DNS映射"><a href="#本地DNS映射" class="headerlink" title="本地DNS映射"></a><strong>本地DNS映射</strong></h5><ul>
+<li>Apache配置中为每个域名定义独立的 <code>&lt;VirtualHost&gt;</code> 块。</li>
+<li>主机正确解析所有域名到虚拟机IP。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# vim /etc/hosts</span><br><span class="line"><span class="comment">#加上一行</span></span><br><span class="line">127.0.0.1 qingshanstudy.com</span><br></pre></td></tr></table></figure>
+
+<h5 id="访问测试"><a href="#访问测试" class="headerlink" title="访问测试"></a><strong>访问测试</strong></h5><p><strong>(1)测试qingshanstudy.com</strong></p>
+<p><strong>虚拟机上</strong></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804220330427.png"  alt="image-20250804220330427"></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804220441163.png"  alt="image-20250804220441163"></p>
+<p><strong>主机上</strong></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232118463.png"  alt="image-20250804232118463"></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232141306.png"  alt="image-20250804232141306"></p>
+<p><strong>核心原因分析：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#DNS解析问题（最主要原因）：</span></span><br><span class="line">  1.主机没有将qingshanstudy.com域名正确解析到虚拟机的IP地址</span><br><span class="line">  2.虚拟机本地可能配置了hosts文件解析，但主机上没有相应配置</span><br><span class="line"></span><br><span class="line"><span class="comment">#网络连接问题：</span></span><br><span class="line">  1. 虚拟机网络模式设置（NAT/桥接/仅主机）可能影响主机访问</span><br><span class="line">     **桥接模式：虚拟机和主机在同一局域网，有独立IP</span><br><span class="line">     **NAT模式：需要配置端口转发（主机端口→虚拟机80端口）</span><br><span class="line">  2. 防火墙可能阻止了主机访问虚拟机的80端口</span><br><span class="line"></span><br><span class="line"><span class="comment">#Apache配置问题：</span></span><br><span class="line">  1.Apache可能没有正确配置ServerName或监听地址</span><br><span class="line">  2.虚拟主机配置可能不正确</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>解决方式：（最直接）</strong></p>
+<p><strong>（1）修改主机hosts文件</strong></p>
+<p>编辑 <code>C:\Windows\System32\drivers\etc\hosts</code>（每个电脑的目录可能不一样）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以管理员身份运行</span></span><br><span class="line">Windows系统默认未安装`vim`编辑器，需使用其他方式编辑`hosts`文件。</span><br><span class="line">notepad C:\Windows\System32\drivers\etc\hosts</span><br><span class="line"><span class="comment">#添加ip与域名的映射</span></span><br><span class="line">[虚拟机IP] qingshanstudy.com</span><br></pre></td></tr></table></figure>
+
+<p><img   src="C:\Users\15078\AppData\Roaming\Typora\typora-user-images\image-20250804231637511.png"  alt="image-20250804231637511"></p>
+<p><strong>（2）测试：</strong></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231241481.png"  alt="image-20250804231241481"></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231311329.png"  alt="image-20250804231311329"></p>
+<p><strong>(2)测试study.com</strong></p>
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231911792.png"  alt="image-20250804231911792"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#原因：DNS解析冲突</span></span><br><span class="line">本地主机的DNS（如路由器、ISP或公共DNS）已将 `study.com` 解析到现成网站的IP，而不是你的虚拟机IP。</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方式：同上</strong></p>
+<p><strong>（1）修改主机hosts文件</strong></p>
+<p>编辑 &#96;C:\Windows\System32\drivers\etc\hosts，添加上虚拟ip与域名的映射</p>
+<p><strong>（2）刷新DNS缓存：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /flushdns</span><br><span class="line"><span class="comment">#这样再次访问study.com时，会优先去C:\Windows\System32\drivers\etc\hosts里面，找到自己定义的域名与IP映射</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）测试</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#可以看到访问域名解析出的ip地址为虚拟主机IP</span></span><br><span class="line"><span class="comment">#也可以看到自己写的网站内容</span></span><br></pre></td></tr></table></figure>
+
+<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232819036.png"  alt="image-20250804232819036"></p>
+
+                    
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/linux/">linux</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2025/07/29/test1/"
+                                   title="test1"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">test1</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/07/29/linux/"
+                                   title="linux文件管理与查询"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">linux文件管理与查询</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="copyright-info info-item">
+    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
+    
+            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Keep Team</a>
+        
+    </div>
+
+    <div class="theme-info info-item">
+        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+    </div>
+
+    
+
+    
+
+    
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools right-toc">
+            <div class="post-tools-container border-box">
+    <ul class="post-tools-list border-box">
+        <!-- PC encrypt again -->
+        
+
+        <!-- PC TOC show toggle -->
+        
+
+        <!-- PC go comment -->
+        
+
+        <!-- PC full screen -->
+        <li class="tools-item flex-center full-screen">
+            <i class="fa-solid fa-expand"></i>
+        </li>
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <!-- toggle mode -->
+        
+            <li class="tools-item tool-toggle-theme-mode flex-center">
+                <i class="fas fa-moon"></i>
+            </li>
+        
+
+        <!-- rss -->
+        
+
+        <!-- to bottom -->
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+
+    <!-- tablet toc -->
+    
+</main>
+
+
+
+
+
+<!-- common js -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local search -->
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    <!-- home page -->
+    
+
+    <!-- post page -->
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+    
+
+    <!-- categories page -->
+    
+
+    <!-- links page -->
+    
+
+    <!-- photos page -->
+    
+
+    <!-- tools page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+</body>
+</html>
