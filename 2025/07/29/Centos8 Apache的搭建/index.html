@@ -1,237 +1,209 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="Keep Team">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Centos8 Apache的搭建 | Hexo</title><meta name="keywords" content="linux"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Centos8 Apache的搭建"><meta name="application-name" content="Centos8 Apache的搭建"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Centos8 Apache的搭建"><meta property="og:url" content="http://example.com/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/index.html"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="Apache 是世界上使用最广泛的Web服务器软件之一。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用。 一、前置知识linux文件系统结构基础 123456&amp;#x2F;etc #配置文件存放的目录&amp;#x2F;var #动态数据存储#命令：ls #查看   cd  #对当前路径切换  mkd"><meta property="og:locale" content="en"><meta property="og:image" content="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg"><meta property="article:author" content="John Doe"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg"><meta name="description" content="Apache 是世界上使用最广泛的Web服务器软件之一。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用。 一、前置知识linux文件系统结构基础 123456&amp;#x2F;etc #配置文件存放的目录&amp;#x2F;var #动态数据存储#命令：ls #查看   cd  #对当前路径切换  mkd"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://example.com/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: {"enable":true,"img":"https://upload-bbs.miyoushe.com/upload/2024/07/27/125766904/ba62475f396df9de3316a08ed9e65d86_5680958632268053399..png"},
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: undefined,
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: undefined,
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.","copySuccess":"Copy success, copy and reprint please mark the address of this article"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'Hexo',
+  title: 'Centos8 Apache的搭建',
+  postAI: '',
+  pageFillDescription: '一、前置知识, 二、安装步骤：, （1）更新软件源并安装apache, （2）启动Apache服务并检查, （3）虚拟主机配置, （1）在默认目录下搭建网站, （2）在非默认目录下搭建网站（不删除原界面）, 创建新网站的目录结构, 创建HTML页面, 配置Apache虚拟主机, 本地DNS映射, 访问测试是世界上使用最广泛的服务器软件之一它可以运行在几乎所有广泛使用的计算机平台上由于其跨平台和安全性被广泛使用一前置知识文件系统结构基础配置文件存放的目录动态数据存储命令查看对当前路径切换创建目录修改权限更改属主组编辑管理配置防火墙网络基础地址和端口默认监听和域名解析默认路径默认路径用户和权限默认以用户运行用开启服务在系统中和都是包管理工具主要用于基于的发行版如如何选择或更早使用优先用系统已自动将命令映射到兼容性两者命令相似是的超集二安装步骤更新软件源并安装将的默认软件仓库源替换为华为云的镜像源操作目的加速软件包下载华为云镜像源通常比官方源在国内的访问速度更快解决官方源不可用问题官方源已停止维护年底直接使用会报错需替换为第三方镜像源命令行下载工具广泛用于系统支持通过和协议下载文件指定输出文件路径下载系统缺少模块导致和模块无法满足依赖安装失败的原因主要是由于的模块依赖冲突或者重复仓库配置问题解决方法第一步清理重复仓库配置备份现有仓库删除重复仓库文件保留华为云的第二步重置华为云仓库配置重新下载华为云官方提供的完整仓库配置更新缓存第三步解决模块依赖问题重置模块流安装最新模块第四步安装尝试安装使用参数自动解决依赖冲突启动服务并检查启动服务开机自启检查状态确认显示在安装完以后我们可以检查配置文件主配置文件虚拟主机配置目录检查系统新增的系统服务检查新增的进程检查新增的日志文件检查新增的用户和组虚拟主机配置在默认目录下搭建网站默认以用户运行更改所属主和属组创建测试页面本地主机上访问的地址来访问网站在非默认目录下搭建网站不删除原界面虚拟主机允许单台服务器通过域名地址或端口托管多个独立网站其本质是通过配置将不同特征的请求引导至不同的文档根目录或后端服务三种类型基于域名的虚拟主机多个域名指向同一个服务器所有域名需解析到同一服务器浏览器请求时会自动携带头如服务器据此区分站点基于的虚拟主机服务器有多个公网不同访问不同网站需为服务器绑定多个地址客户端直接通过不同访问如基于端口的虚拟主机通过不同端口提供不同服务需在防火墙中放行对应端口如访问官网访问后台访问时需显式指定端口如用户访问会检查和匹配相应的虚拟主机配置返回内容创建新网站的目录结构创建页面编辑测试界面配置虚拟主机主域名备用域名网站根目录错误日志访问日志本地映射配置中为每个域名定义独立的块主机正确解析所有域名到虚拟机加上一行访问测试测试虚拟机上主机上核心原因分析解析问题最主要原因主机没有将域名正确解析到虚拟机的地址虚拟机本地可能配置了文件解析但主机上没有相应配置网络连接问题虚拟机网络模式设置桥接仅主机可能影响主机访问桥接模式虚拟机和主机在同一局域网有独立模式需要配置端口转发主机端口虚拟机端口防火墙可能阻止了主机访问虚拟机的端口配置问题可能没有正确配置或监听地址虚拟主机配置可能不正确解决方式最直接修改主机文件编辑每个电脑的目录可能不一样以管理员身份运行系统默认未安装编辑器需使用其他方式编辑文件添加与域名的映射虚拟机测试测试原因解析冲突本地主机的如路由器或公共已将解析到现成网站的而不是你的虚拟机解决方式同上修改主机文件编辑添加上虚拟与域名的映射刷新缓存这样再次访问时会优先去里面找到自己定义的域名与映射测试可以看到访问域名解析出的地址为虚拟主机也可以看到自己写的网站内容',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-08-08 10:58:26',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
     
-    <title>
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
         
-            Centos8 Apache的搭建 |
-        
-        Keep Theme
-    </title>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-<link rel="stylesheet" href="/css/style.css">
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://npm.elemecdn.com/anzhiyu-blog-static@1.0.4/img/avatar.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
 
-    
-        <link rel="shortcut icon" href="/images/logo.svg">
-    
-    
-<link rel="stylesheet" href="/font/css/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/regular.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/solid.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/brands.min.css">
-
-    
-    <script class="keep-theme-configurations">
-    const KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"}
-    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Keep Theme","author":"Keep Team","avatar":"/images/avatar.svg","logo":"/images/logo.svg","favicon":"/images/logo.svg"},"menu":{"home":"/","archives":"/archives"},"first_screen":{"enable":false,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving.","hitokoto":false},"social_contact":{"enable":false,"links":{"github":null,"weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"x":null,"facebook":null,"email":null}},"scroll":{"progress_bar":false,"percent":false,"hide_header":true},"home":{"announcement":null,"category":false,"tag":false,"post_datetime":"updated"},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":false,"reward":{"enable":false,"img_link":null,"text":null,"icon":null}},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"toc":{"enable":false,"number":false,"expand_all":false,"init_open":true,"layout":"right"},"website_count":{"busuanzi_count":{"enable":false,"site_uv":false,"site_pv":false,"page_pv":false}},"local_search":{"enable":false,"preload":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.39"},"waline":{"server_url":null,"reaction":false,"version":"3.3.2"},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2020,"word_count":false,"site_deploy":{"enable":false,"provider":"github","url":null},"record":{"enable":false,"list":[{"code":null,"link":null}]}},"inject":{"enable":false,"css":[null],"js":[null]},"root":"","source_data":{},"version":"4.2.5"}
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
-    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
-    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
-  </script>
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-
-    
-</div>
-
-
-
-<main class="page-container border-box">
-    <!-- home first screen  -->
-    
-
-    <!-- page content -->
-    <div class="page-main-content border-box">
-        <div class="page-main-content-top">
-            
-<header class="header-wrapper">
-
-    <div class="border-box header-content">
-        <div class="left flex-start border-box">
-            
-                <a class="logo-image border-box" href="/">
-                    <img src="/images/logo.svg">
-                </a>
-            
-            <a class="site-name border-box" href="/">
-               Keep Theme
-            </a>
-        </div>
-
-        <div class="right border-box">
-            <div class="pc border-box">
-                <ul class="menu-list border-box">
-                    
-                        
-                        <li class="menu-item flex-start border-box">
-                            <a class="menu-text-color border-box" href="/">
-                                
-                                HOME
-                                
-                            </a>
-                            
-                        </li>
-                    
-                        
-                        <li class="menu-item flex-start border-box">
-                            <a class="menu-text-color border-box" href="/archives">
-                                
-                                ARCHIVES
-                                
-                            </a>
-                            
-                        </li>
-                    
-                    
-                </ul>
-            </div>
-            <div class="mobile border-box flex-start">
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list border-box">
-            
-                
-                <li class="drawer-menu-item border-box not-sub-menu">
-                    <label class="drawer-menu-label border-box">
-                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/">
-                            
-                            HOME
-                        </a>
-                        
-                    </label>
-                    
-                </li>
-            
-                
-                <li class="drawer-menu-item border-box not-sub-menu">
-                    <label class="drawer-menu-label border-box">
-                        <a class="drawer-menu-text-color left-side flex-start border-box" href="/archives">
-                            
-                            ARCHIVES
-                        </a>
-                        
-                    </label>
-                    
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle border-box">
-
-            <div class="main-content border-box">
-                
-
-                    
-<div class="fade-in-down-animation">
-    <div class="post-page-container border-box">
-        <div class="post-content-container border-box">
-            
-
-            <div class="post-content-bottom border-box">
-                
-                    <div class="post-title">
-                        Centos8 Apache的搭建
-                    </div>
-                
-
-                
-                    <div class="post-header border-box">
-                        
-                            <div class="avatar-box border-box">
-                                <img src="/images/avatar.svg">
-                            </div>
-                        
-                        <div class="info-box">
-                            <div class="author border-box">
-                                <span class="name">Keep Team</span>
-                                
-                                    <span class="author-badge">Lv1</span>
-                                
-                            </div>
-                            <div class="meta-info border-box">
-                                
-
-<div class="post-meta-info-container border-box post">
-    <div class="post-meta-info border-box">
-        
-
-        
-            <span class="meta-info-item post-create-date">
-                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
-                <span class="datetime">2025-07-29 16:17:51</span>
-            </span>
-
-            
-                <span class="meta-info-item post-update-date">
-                    <i class="icon fa-solid fa-file-pen"></i>&nbsp;
-                    <span class="datetime" data-updated="Fri Aug 08 2025 10:51:59 GMT+0800">2025-08-08 10:51:59</span>
-                </span>
-            
-        
-
-        
-
-        
-            <span class="post-tag meta-info-item border-box">
-                <ul class="post-tag-ul">
-                    
-                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/linux/">linux</a></li>
-                        
-                    
-                </ul>
-            </span>
-        
-
-        
-        
-        
-        
-    </div>
-
-    
-</div>
-
-                            </div>
-                        </div>
-                    </div>
-                
-
-                <div class="post-content keep-markdown-body ">
-                    
-
-                    
-                         <p><strong>Apache</strong> 是世界上使用最广泛的Web服务器软件之一。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用。</p>
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/" accesskey="h"><div class="title">Hexo</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> Newest Comments</span></div><div class="aside-list"><span>loading...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/linux/" style="font-size: 1.05rem;">linux<sup>2</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.05rem;">测试<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">July 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="article-meta tags"><a class="article-meta__tags" href="/tags/linux/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>linux</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Centos8 Apache的搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-07-29T08:17:51.000Z" title="Created 2025-07-29 16:17:51">2025-07-29</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-08-08T02:58:26.193Z" title="Updated 2025-08-08 10:58:26">2025-08-08</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src=""></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/"><header><a href="/tags/linux/" tabindex="-1" itemprop="url">linux</a><h1 id="CrawlerTitle" itemprop="name headline">Centos8 Apache的搭建</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">John Doe</span><time itemprop="dateCreated datePublished" datetime="2025-07-29T08:17:51.000Z" title="Created 2025-07-29 16:17:51">2025-07-29</time><time itemprop="dateCreated datePublished" datetime="2025-08-08T02:58:26.193Z" title="Updated 2025-08-08 10:58:26">2025-08-08</time></header><p><strong>Apache</strong> 是世界上使用最广泛的Web服务器软件之一。它可以运行在几乎所有广泛使用的计算机平台上，由于其跨平台和安全性被广泛使用。</p>
 <h2 id="一、前置知识"><a href="#一、前置知识" class="headerlink" title="一、前置知识"></a><strong>一、前置知识</strong></h2><p><strong>linux文件系统结构基础</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/etc <span class="comment">#配置文件存放的目录</span></span><br><span class="line">/var <span class="comment">#动态数据存储</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#命令：</span></span><br><span class="line"><span class="built_in">ls</span> <span class="comment">#查看   cd  #对当前路径切换  mkdir #创建目录   chmod #修改权限  chown #更改属主/组  vim #编辑</span></span><br><span class="line">systemctl  <span class="comment">#管理配置   firewall #防火墙</span></span><br></pre></td></tr></table></figure>
 
@@ -246,60 +218,60 @@
 
 
 
-<h2 id="二、安装步骤："><a href="#二、安装步骤：" class="headerlink" title="二、安装步骤："></a>二、<strong>安装步骤：</strong></h2><h3 id="（1）更新软件源并安装apache"><a href="#（1）更新软件源并安装apache" class="headerlink" title="（1）更新软件源并安装apache"></a><strong>（1）更新软件源并安装apache</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.huaweicloud.com/repository/conf/CentOS-8-reg.repo</span><br><span class="line"></span><br><span class="line"><span class="comment">#将 CentOS 8 的默认软件仓库源替换为华为云的镜像源</span></span><br><span class="line">操作目的：</span><br><span class="line">加速软件包下载：华为云镜像源通常比官方源在国内的访问速度更快。</span><br><span class="line">解决官方源不可用问题：CentOS 8 官方源已停止维护（2021年底），直接使用会报错，需替换为第三方镜像源。</span><br><span class="line"></span><br><span class="line"><span class="comment">#wget 命令行下载工具，广泛用于Linux/Unix系统，支持通过HTTP、HTTPS和FTP协议下载文件。</span></span><br><span class="line"><span class="comment">#-O：指定输出文件路径。</span></span><br><span class="line">[root@<span class="built_in">test</span> ~]#yum install httpd <span class="comment">#下载</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、安装步骤："><a href="#二、安装步骤：" class="headerlink" title="二、安装步骤："></a>二、安装步骤：</h2><h3 id="（1）更新软件源并安装apache"><a href="#（1）更新软件源并安装apache" class="headerlink" title="（1）更新软件源并安装apache"></a><strong>（1）更新软件源并安装apache</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.huaweicloud.com/repository/conf/CentOS-8-reg.repo</span><br><span class="line"></span><br><span class="line"><span class="comment">#将 CentOS 8 的默认软件仓库源替换为华为云的镜像源</span></span><br><span class="line">操作目的：</span><br><span class="line">加速软件包下载：华为云镜像源通常比官方源在国内的访问速度更快。</span><br><span class="line">解决官方源不可用问题：CentOS 8 官方源已停止维护（2021年底），直接使用会报错，需替换为第三方镜像源。</span><br><span class="line"></span><br><span class="line"><span class="comment">#wget 命令行下载工具，广泛用于Linux/Unix系统，支持通过HTTP、HTTPS和FTP协议下载文件。</span></span><br><span class="line"><span class="comment">#-O：指定输出文件路径。</span></span><br><span class="line">[root@<span class="built_in">test</span> ~]#yum install httpd <span class="comment">#下载</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804203631061.png"  alt="image-20250804203631061"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804203631061.png" alt="image-20250804203631061"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#系统缺少perl 5.26模块，导致perl-DBD-SQLite和perl-DBI模块无法满足依赖</span></span><br><span class="line">安装httpd失败的原因主要是由于CentOS 8的模块依赖冲突或者重复仓库配置问题。</span><br></pre></td></tr></table></figure>
 
 <p><strong>解决方法：</strong></p>
 <p><strong>第一步：清理重复仓库配置</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 备份现有仓库</span></span><br><span class="line"><span class="built_in">mkdir</span> ~/repo_backup &amp;&amp; <span class="built_in">cp</span> /etc/yum.repos.d/* ~/repo_backup/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除重复仓库文件（保留华为云的CentOS-Base.repo）</span></span><br><span class="line"><span class="built_in">rm</span> -f /etc/yum.repos.d/CentOS-*.repo</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154830561.png"  alt="image-20250804154830561"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154830561.png" alt="image-20250804154830561"></p>
 <p><strong>第二步：重置华为云仓库配置</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新下载华为云官方提供的完整仓库配置</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.huaweicloud.com/repository/conf/CentOS-8-reg.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新缓存</span></span><br><span class="line">dnf clean all &amp;&amp; dnf makecache</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154458028.png"  alt="image-20250804154458028"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154458028.png" alt="image-20250804154458028"></p>
 <p><strong>第三步：解决模块依赖问题</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重置模块流</span></span><br><span class="line">dnf module reset perl</span><br><span class="line"><span class="comment"># 安装最新perl模块</span></span><br><span class="line">dnf install perl -y</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154532515.png"  alt="image-20250804154532515"></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154629817.png"  alt="image-20250804154629817"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154532515.png" alt="image-20250804154532515"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154629817.png" alt="image-20250804154629817"></p>
 <p><strong>第四步：安装httpd</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 尝试安装httpd（使用--allowerasing参数自动解决依赖冲突）</span></span><br><span class="line">dnf install httpd --allowerasing -y</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154709050.png"  alt="image-20250804154709050"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154709050.png" alt="image-20250804154709050"></p>
 <h3 id="（2）启动Apache服务并检查"><a href="#（2）启动Apache服务并检查" class="headerlink" title="（2）启动Apache服务并检查"></a><strong>（2）启动Apache服务并检查</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl start httpd    <span class="comment"># 启动服务</span></span><br><span class="line">systemctl <span class="built_in">enable</span> httpd   <span class="comment"># 开机自启</span></span><br><span class="line">systemctl status httpd   <span class="comment"># 检查状态（确认显示 &quot;active (running)&quot;）</span></span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154958663.png"  alt="image-20250804154958663"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804154958663.png" alt="image-20250804154958663"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在安装完以后，我们可以检查apache配置文件 </span></span><br><span class="line"><span class="comment"># 主配置文件 </span></span><br><span class="line"><span class="built_in">ls</span> -l /etc/httpd/conf/httpd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 虚拟主机配置目录 </span></span><br><span class="line"><span class="built_in">ls</span> -l /etc/httpd/conf.d/yourwebsite.conf</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250805134810754.png"  alt="image-20250805134810754"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250805134810754.png" alt="image-20250805134810754"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查系统新增的系统服务 </span></span><br><span class="line">systemctl list-unit-files | grep httpd</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160534817.png"  alt="image-20250804160534817"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160534817.png" alt="image-20250804160534817"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查新增的apache进程 </span></span><br><span class="line">ps aux | grep httpd</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160610088.png"  alt="image-20250804160610088"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160610088.png" alt="image-20250804160610088"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查新增的日志文件</span></span><br><span class="line"><span class="built_in">ls</span> -l /var/log/httpd/</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211049524.png"  alt="image-20250804211049524"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211049524.png" alt="image-20250804211049524"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">#检查新增的用户和组 </span></span><br><span class="line">grep apache /etc/passwd </span><br><span class="line">grep apache /etc/group </span><br><span class="line"><span class="built_in">tail</span> -2 /etc/passwd</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160749295.png"  alt="image-20250804160749295"></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160828789.png"  alt="image-20250804160828789"></p>
-<h3 id="（3）虚拟主机配置"><a href="#（3）虚拟主机配置" class="headerlink" title="（3）虚拟主机配置"></a><strong>（3）虚拟主机配置</strong></h3><h4 id="（1）在默认目录下搭建网站"><a href="#（1）在默认目录下搭建网站" class="headerlink" title="（1）在默认目录下搭建网站"></a>（1）在默认目录下搭建网站</h4><p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211251229.png"  alt="image-20250804211251229"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160749295.png" alt="image-20250804160749295"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804160828789.png" alt="image-20250804160828789"></p>
+<h3 id="（3）虚拟主机配置"><a href="#（3）虚拟主机配置" class="headerlink" title="（3）虚拟主机配置"></a><strong>（3）虚拟主机配置</strong></h3><h4 id="（1）在默认目录下搭建网站"><a href="#（1）在默认目录下搭建网站" class="headerlink" title="（1）在默认目录下搭建网站"></a>（1）在默认目录下搭建网站</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211251229.png" alt="image-20250804211251229"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#apache默认以apache用户运行</span></span><br><span class="line"><span class="comment">#更改所属主和属组</span></span><br><span class="line">[root@<span class="built_in">test</span> html]# <span class="built_in">chown</span> apache:apache index.html</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250805001150129.png"  alt="image-20250805001150129"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250805001150129.png" alt="image-20250805001150129"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建测试页面</span></span><br><span class="line">[root@<span class="built_in">test</span> html]# vim index.html</span><br><span class="line"></span><br><span class="line">[root@<span class="built_in">test</span> html]# curl http://localhost</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211823192.png"  alt="image-20250804211823192"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211823192.png" alt="image-20250804211823192"></p>
 <p>本地主机上访问centos8的IP地址来访问网站</p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804212049564.png"  alt="image-20250804212049564"></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211658003.png"  alt="image-20250804211658003"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804212049564.png" alt="image-20250804212049564"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804211658003.png" alt="image-20250804211658003"></p>
 <h4 id="（2）在非默认目录下搭建网站（不删除原界面）"><a href="#（2）在非默认目录下搭建网站（不删除原界面）" class="headerlink" title="（2）在非默认目录下搭建网站（不删除原界面）"></a>（2）在非默认目录下搭建网站（不删除原界面）</h4><blockquote>
 <p>Apache虚拟主机允许单台服务器通过 <strong>域名</strong>、<strong>IP地址</strong> 或 <strong>端口</strong> 托管多个独立网站，其本质是通过配置将不同特征的请求引导至不同的文档根目录或后端服务。</p>
 </blockquote>
@@ -311,12 +283,12 @@
 <p>返回内容</p>
 <h5 id="创建新网站的目录结构"><a href="#创建新网站的目录结构" class="headerlink" title="创建新网站的目录结构"></a><strong>创建新网站的目录结构</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# <span class="built_in">mkdir</span> -p /var/www/qingshanstudy/html /var/www/qingshanstudy/log</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804214633197.png"  alt="image-20250804214633197"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804214633197.png" alt="image-20250804214633197"></p>
 <h5 id="创建HTML页面"><a href="#创建HTML页面" class="headerlink" title="创建HTML页面"></a><strong>创建HTML页面</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> qingshanstudy]# vim html/index.html</span><br><span class="line"><span class="comment">#编辑测试界面</span></span><br></pre></td></tr></table></figure>
 
 <h5 id="配置Apache虚拟主机"><a href="#配置Apache虚拟主机" class="headerlink" title="配置Apache虚拟主机"></a><strong>配置Apache虚拟主机</strong></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@<span class="built_in">test</span> ~]# vim /etc/httpd/conf.d/qingshanstudy.conf</span><br><span class="line"></span><br><span class="line">&lt;VirtualHost *:80&gt; </span><br><span class="line">ServerName qingshanstudy.example.com <span class="comment"># 主域名 </span></span><br><span class="line">ServerAlias www.qingshanstudy.example.com <span class="comment"># 备用域名</span></span><br><span class="line">DocumentRoot /var/www/qingshanstudy/html <span class="comment"># 网站根目录 </span></span><br><span class="line">ErrorLog /var/log/httpd/qingshanstudy_error.log <span class="comment"># 错误日志</span></span><br><span class="line">CustomLog /var/log/httpd/qingshanstudy_access.log combined <span class="comment"># 访问日志</span></span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804215553582.png"  alt="image-20250804215553582"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804215553582.png" alt="image-20250804215553582"></p>
 <h5 id="本地DNS映射"><a href="#本地DNS映射" class="headerlink" title="本地DNS映射"></a><strong>本地DNS映射</strong></h5><ul>
 <li>Apache配置中为每个域名定义独立的 <code>&lt;VirtualHost&gt;</code> 块。</li>
 <li>主机正确解析所有域名到虚拟机IP。</li>
@@ -325,11 +297,11 @@
 
 <h5 id="访问测试"><a href="#访问测试" class="headerlink" title="访问测试"></a><strong>访问测试</strong></h5><p><strong>(1)测试qingshanstudy.com</strong></p>
 <p><strong>虚拟机上</strong></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804220330427.png"  alt="image-20250804220330427"></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804220441163.png"  alt="image-20250804220441163"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804220330427.png" alt="image-20250804220330427"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804220441163.png" alt="image-20250804220441163"></p>
 <p><strong>主机上</strong></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232118463.png"  alt="image-20250804232118463"></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232141306.png"  alt="image-20250804232141306"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232118463.png" alt="image-20250804232118463"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232141306.png" alt="image-20250804232141306"></p>
 <p><strong>核心原因分析：</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#DNS解析问题（最主要原因）：</span></span><br><span class="line">  1.主机没有将qingshanstudy.com域名正确解析到虚拟机的IP地址</span><br><span class="line">  2.虚拟机本地可能配置了hosts文件解析，但主机上没有相应配置</span><br><span class="line"></span><br><span class="line"><span class="comment">#网络连接问题：</span></span><br><span class="line">  1. 虚拟机网络模式设置（NAT/桥接/仅主机）可能影响主机访问</span><br><span class="line">     **桥接模式：虚拟机和主机在同一局域网，有独立IP</span><br><span class="line">     **NAT模式：需要配置端口转发（主机端口→虚拟机80端口）</span><br><span class="line">  2. 防火墙可能阻止了主机访问虚拟机的80端口</span><br><span class="line"></span><br><span class="line"><span class="comment">#Apache配置问题：</span></span><br><span class="line">  1.Apache可能没有正确配置ServerName或监听地址</span><br><span class="line">  2.虚拟主机配置可能不正确</span><br></pre></td></tr></table></figure>
 
@@ -340,12 +312,12 @@
 <p>编辑 <code>C:\Windows\System32\drivers\etc\hosts</code>（每个电脑的目录可能不一样）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#以管理员身份运行</span></span><br><span class="line">Windows系统默认未安装`vim`编辑器，需使用其他方式编辑`hosts`文件。</span><br><span class="line">notepad C:\Windows\System32\drivers\etc\hosts</span><br><span class="line"><span class="comment">#添加ip与域名的映射</span></span><br><span class="line">[虚拟机IP] qingshanstudy.com</span><br></pre></td></tr></table></figure>
 
-<p><img   src="C:\Users\15078\AppData\Roaming\Typora\typora-user-images\image-20250804231637511.png"  alt="image-20250804231637511"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="C:\Users\15078\AppData\Roaming\Typora\typora-user-images\image-20250804231637511.png" alt="image-20250804231637511"></p>
 <p><strong>（2）测试：</strong></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231241481.png"  alt="image-20250804231241481"></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231311329.png"  alt="image-20250804231311329"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231241481.png" alt="image-20250804231241481"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231311329.png" alt="image-20250804231311329"></p>
 <p><strong>(2)测试study.com</strong></p>
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231911792.png"  alt="image-20250804231911792"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804231911792.png" alt="image-20250804231911792"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#原因：DNS解析冲突</span></span><br><span class="line">本地主机的DNS（如路由器、ISP或公共DNS）已将 `study.com` 解析到现成网站的IP，而不是你的虚拟机IP。</span><br></pre></td></tr></table></figure>
 
 <p><strong>解决方式：同上</strong></p>
@@ -357,266 +329,149 @@
 <p><strong>（3）测试</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#可以看到访问域名解析出的ip地址为虚拟主机IP</span></span><br><span class="line"><span class="comment">#也可以看到自己写的网站内容</span></span><br></pre></td></tr></table></figure>
 
-<p><img   src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232819036.png"  alt="image-20250804232819036"></p>
-
-                    
-                </div>
-
-                
-
-                <div class="post-bottom-tags-and-share border-box">
-                    <div>
-                        
-                            <ul class="post-tags-box border-box">
-                                
-                                    <li class="tag-item border-box">
-                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/linux/">linux</a>
-                                    </li>
-                                
-                            </ul>
-                        
-                    </div>
-                    <div>
-                        
-                    </div>
-                </div>
-
-                
-
-                
-                    <div class="post-nav border-box">
-                        
-                            <div class="prev-post">
-                                <a class="prev"
-                                   rel="prev"
-                                   href="/2025/07/29/test1/"
-                                   title="test1"
-                                >
-                                    <span class="left arrow-icon flex-center">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">test1</span>
-                                        <span class="post-nav-item">Prev posts</span>
-                                    </span>
-                                </a>
-                            </div>
-                        
-                        
-                            <div class="next-post">
-                                <a class="next"
-                                   rel="next"
-                                   href="/2025/07/29/linux/"
-                                   title="linux文件管理与查询"
-                                >
-                                    <span class="title flex-center">
-                                        <span class="post-nav-title-item text-ellipsis">linux文件管理与查询</span>
-                                        <span class="post-nav-item">Next posts</span>
-                                    </span>
-                                    <span class="right arrow-icon flex-center">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </span>
-                                </a>
-                            </div>
-                        
-                    </div>
-                
-
-                
-                    
-
-
-
-
-
-
-                
-            </div>
-        </div>
-
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://raw.githubusercontent.com/seventeen526/picgo/main/img/image-20250804232819036.png" alt="image-20250804232819036"></p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">John Doe</div><div class="post-copyright__author_desc"></div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/')">Centos8 Apache的搭建</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-weichat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/qrcode-alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Centos8 Apache的搭建&amp;url=http://example.com/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/&amp;pic=" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/linux/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>linux<span class="tagsPageCount">2</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/07/29/linux/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">linux文件管理与查询</div></div></a></div><div class="next-post pull-right"><a href="/2025/07/29/test1/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">test1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2025/07/29/linux/" title="linux文件管理与查询"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-07-29</div><div class="title">linux文件管理与查询</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/04/27/64496e511b09c.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__description"></div></div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2023/05/13/645fa415e8694.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">一、前置知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">二、安装步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%9B%B4%E6%96%B0%E8%BD%AF%E4%BB%B6%E6%BA%90%E5%B9%B6%E5%AE%89%E8%A3%85apache"><span class="toc-number">2.1.</span> <span class="toc-text">（1）更新软件源并安装apache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%90%AF%E5%8A%A8Apache%E6%9C%8D%E5%8A%A1%E5%B9%B6%E6%A3%80%E6%9F%A5"><span class="toc-number">2.2.</span> <span class="toc-text">（2）启动Apache服务并检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.</span> <span class="toc-text">（3）虚拟主机配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%9C%A8%E9%BB%98%E8%AE%A4%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99"><span class="toc-number">2.3.1.</span> <span class="toc-text">（1）在默认目录下搭建网站</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%9C%A8%E9%9D%9E%E9%BB%98%E8%AE%A4%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99%EF%BC%88%E4%B8%8D%E5%88%A0%E9%99%A4%E5%8E%9F%E7%95%8C%E9%9D%A2%EF%BC%89"><span class="toc-number">2.3.2.</span> <span class="toc-text">（2）在非默认目录下搭建网站（不删除原界面）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E7%BD%91%E7%AB%99%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">创建新网站的目录结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAHTML%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">创建HTML页面</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEApache%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">配置Apache虚拟主机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0DNS%E6%98%A0%E5%B0%84"><span class="toc-number">2.3.2.4.</span> <span class="toc-text">本地DNS映射</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.2.5.</span> <span class="toc-text">访问测试</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2025/07/29/test1/" title="test1">test1</a><time datetime="2025-07-29T08:17:51.000Z" title="Created 2025-07-29 16:17:51">2025-07-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/29/Centos8%20Apache%E7%9A%84%E6%90%AD%E5%BB%BA/" title="Centos8 Apache的搭建">Centos8 Apache的搭建</a><time datetime="2025-07-29T08:17:51.000Z" title="Created 2025-07-29 16:17:51">2025-07-29</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2025/07/29/linux/" title="linux文件管理与查询">linux文件管理与查询</a><time datetime="2025-07-29T08:17:51.000Z" title="Created 2025-07-29 16:17:51">2025-07-29</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2025/07/28/hello-world/" title="Hello World">Hello World</a><time datetime="2025-07-28T08:59:42.557Z" title="Created 2025-07-28 16:59:42">2025-07-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2025 By <a class="footer-bar-link" href="/" title="John Doe" target="_blank">John Doe</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">4</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">2</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">0</div></a></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="Display Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>Display Mode</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://image.anheyu.com/" title="安知鱼图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="安知鱼图床"/><span class="back-menu-item-text">安知鱼图床</span></a></div></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/linux/" style="font-size: 0.88rem;">linux<sup>2</sup></a><a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 0.88rem;">测试<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
         
-    </div>
-</div>
-
-
-                
-            </div>
-        </div>
-
-        <div class="page-main-content-bottom border-box">
-            
-<footer class="footer border-box">
-    <div class="copyright-info info-item">
-    &copy;&nbsp;<span>2020</span>&nbsp;-&nbsp;2025
-    
-            &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Keep Team</a>
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
         
-    </div>
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
 
-    <div class="theme-info info-item">
-        Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
-    </div>
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
 
-    
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
 
-    
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 John Doe 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
 
-    
-</footer>
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
 
-        </div>
-    </div>
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><div class="js-pjax"><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
 
-    <!-- post tools -->
-    
-        <div class="post-tools right-toc">
-            <div class="post-tools-container border-box">
-    <ul class="post-tools-list border-box">
-        <!-- PC encrypt again -->
-        
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
 
-        <!-- PC TOC show toggle -->
-        
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
 
-        <!-- PC go comment -->
-        
+  typeof typed === 'object' && typed.destroy()
 
-        <!-- PC full screen -->
-        <li class="tools-item flex-center full-screen">
-            <i class="fa-solid fa-expand"></i>
-        </li>
-    </ul>
-</div>
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
 
-        </div>
-    
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
 
-    <!-- side tools -->
-    <div class="side-tools">
-        <div class="side-tools-container border-box ">
-    <ul class="side-tools-list side-tools-show-handle border-box">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
 
-        <!-- toggle mode -->
-        
-            <li class="tools-item tool-toggle-theme-mode flex-center">
-                <i class="fas fa-moon"></i>
-            </li>
-        
+  typeof panguInit === 'function' && panguInit()
 
-        <!-- rss -->
-        
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
 
-        <!-- to bottom -->
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
 
-    <ul class="exposed-tools-list border-box">
-        
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
 
-        
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
 
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-
-        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
-            <i class="arrow fas fa-arrow-up"></i>
-            <span class="percent"></span>
-        </li>
-    </ul>
-</div>
-
-    </div>
-
-    <!-- image mask -->
-    <div class="zoom-in-image-mask">
-    <img class="zoom-in-image">
-</div>
-
-
-    <!-- local search -->
-    
-
-    <!-- tablet toc -->
-    
-</main>
-
-
-
-
-
-<!-- common js -->
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/header-shrink.js"></script>
-
-<script src="/js/back2top.js"></script>
-
-<script src="/js/toggle-theme.js"></script>
-
-<script src="/js/code-block.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-
-<!-- local search -->
-
-
-<!-- lazyload -->
-
-
-<div class="">
-    <!-- home page -->
-    
-
-    <!-- post page -->
-    
-        <!-- post-helper -->
-        
-<script src="/js/post/post-helper.js"></script>
-
-
-        <!-- toc -->
-        
-
-        <!-- copyright-info -->
-        
-
-        <!-- share -->
-        
-    
-
-    <!-- categories page -->
-    
-
-    <!-- links page -->
-    
-
-    <!-- photos page -->
-    
-
-    <!-- tools page -->
-    
-</div>
-
-<!-- mermaid -->
-
-
-<!-- pjax -->
-
-
-
-</body>
-</html>
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
